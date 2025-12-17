@@ -5,7 +5,7 @@ import os
 df = pd.read_csv("PriceSheet/Residential.csv")
 
 #                               Rows   Col
-Qcell415_Row0_6_13 = df.iloc[[0,6,13],0:19] 
+Qcell415_Row0_6_13 = df.iloc[[0,6,13],0:20] 
 #                                     ^^  obtains the first 19, 0:18
 
 ## _______________ Helpful CODE ref. .shape .size .dtypes 
@@ -15,28 +15,34 @@ Qcell415_Row0_6_13 = df.iloc[[0,6,13],0:19]
 # print("I used two variables to capture the tuple\nROWS: ", rowOfData, "COL: ", colOfData)
 # print("\nUsing .dtypes - to ouptupt our current dataFrame's  col NAME and its dataTYPE\nThis comes out as a series listing: 🌊 ", Qcell415_Row0_6_13.dtypes)
 
-# print(Qcell415_Row0_6_13.head())
-qty415 = Qcell415_Row0_6_13.iloc[1]
+
+# the following two lines of code allow me to rename the columns 
+qty415 = Qcell415_Row0_6_13.iloc[1] # taking the second ROW
 Qcell415_Row0_6_13.columns = qty415
+# using the pandas attribute .columns 
+# .columns holds all column names of my current DataFrame
 
-print(Qcell415_Row0_6_13.head())
-
+# I don't want doubles or other sections of this 
 Qcell415_Row0_6_13 = Qcell415_Row0_6_13.drop(Qcell415_Row0_6_13.index[1])
 Qcell415_Row0_6_13 = Qcell415_Row0_6_13.drop(Qcell415_Row0_6_13.index[0])
-Qcell415_Row0_6_13 = Qcell415_Row0_6_13.drop(Qcell415_Row0_6_13.columns[-1], axis=1)
-# Qcell415_Row0_6_13.index = ['Qcell415', 'Total Cost']
+Qcell415_Row0_6_13 = Qcell415_Row0_6_13.drop(Qcell415_Row0_6_13.columns[-1], axis=1) # removes the last column 
+# second to last step in cleaning is re setting the rows
 Qcell415_Row0_6_13 = Qcell415_Row0_6_13.reset_index(drop=True)
+# last step, I like to remane my column...
 Qcell415_Row0_6_13 = Qcell415_Row0_6_13.rename(columns={'Qty. PV Modules': 'Qcell415'})
 
-
-print("try")
 print(Qcell415_Row0_6_13.head())
 
-# make an array the exact col size of the data
-# Qcell415_count = pd.DataFrame({ 'qty415': range(1,colOfData)})
 
 
+lg375 = df.iloc[[25,28,35],0:19] 
+lg375QTY = lg375.iloc[1]
+lg375.columns = lg375QTY
+lg375 = lg375.drop(lg375.index[[0,1]])
+lg375 = lg375.reset_index(drop=True)
+lg375 = lg375.rename(columns={'Qty. PV Modules': 'LG375'})
+print(lg375.head())
 
-
-
-lg375_Row = df.iloc[20:25,0:19] 
+# filtered = df[df.apply(lambda row: row.astype(str).str.contains('Qty. PV Modules ', case=False).any(), axis=1)]
+filtera = df[df.apply(lambda row: row.astype(str).str.contains('Module|Cost Per Watt|System Size|Total Cost of PV System|Qty. PV Modules', case=False).any(), axis=1)]
+print(filtera)
