@@ -1,6 +1,6 @@
 import pandas as pd
 
-data = pd.DataFrame({'tits': range(6,0,-1),
+data = pd.DataFrame({'grimyRange': range(6,0,-1),
                      'brains': ['1', '3','22','35','127','666'],
                      'brawn':['PHY', 'MAT', 'CAL', 'CSS', 'EGN', 'SIX']})
 print(data)

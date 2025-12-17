@@ -10,6 +10,6 @@ I built this to support a tool for quickly and accurately quoting solar system i
 
 ## What I Learned
 
-- How to load CSVs and inspect data structures
-- Using `.groupby()`, `.filter()`, and `.apply()` to transform data
-- How to write clean, reusable Python functions for data inspection
+- How to clean and normalize inconsistent tabular data using pandas
+- How to validate inputs and catch edge cases early
+- How to write scripts that reduce manual, error-prone processes

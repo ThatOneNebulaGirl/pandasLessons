@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-# print("Current directory:", os.getcwd())
+# print("Current directory:", os.getcwd()) #Gets current directory
 df = pd.read_csv("PriceSheet/Residential.csv")
 
 #                               Rows   Col
